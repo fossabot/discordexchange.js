@@ -2,7 +2,7 @@ const websocket = require("ws");
 exports.exchangeClient = async function (token) {
     const ws = new websocket("https://gateway.discord.exchange");
     this.token = token;
-    this.authenticate = function (token){
+    this.authenticate = function (token) {
         const tokenObject = {
             "op": 1,
             "d": {
