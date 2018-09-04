@@ -1,4 +1,6 @@
 const websocket = require("ws");
+const events = require("events"); //eslint-disable-line
+var transactionEvent; //eslint-disable-line
 exports.exchangeClient = async function (token) {
     const ws = new websocket("https://gateway.discord.exchange");
     this.token = token;
@@ -13,5 +15,6 @@ exports.exchangeClient = async function (token) {
         ws.send(data, function (err) {
             if (err) throw err;
         });
+    
     };
 };
