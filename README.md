@@ -1,6 +1,9 @@
 # Discordexchange.js
+[![npm version](https://badge.fury.io/js/discordexchange.svg)](https://badge.fury.io/js/discordexchange)
+[![Dependency Status](https://david-dm.org/cfanoulis/discordexchange.js.svg)]
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3568134c4747441ea339dab9f04020e2)](https://app.codacy.com/app/cfan/discordexchange.js?utm_source=github.com&utm_medium=referral&utm_content=cfanoulis/discordexchange.js&utm_campaign=Badge_Grade_Settings)
 [![Known Vulnerabilities](https://snyk.io/test/github/cfanoulis/discordexchange.js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/cfanoulis/discordexchange.js?targetFile=package.json)
+[![npm version](https://badge.fury.io/js/discordexchange.svg)](https://badge.fury.io/js/discordexchange)
 
 The nodeJS API client for Discord.Exchange
 
