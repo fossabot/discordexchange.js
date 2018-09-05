@@ -1,20 +1,28 @@
 const websocket = require("ws");
-const events = require("events"); //eslint-disable-line
-var transactionEvent; //eslint-disable-line
-exports.exchangeClient = async function (token) {
-    const ws = new websocket("https://gateway.discord.exchange");
-    this.token = token;
-    this.authenticate = function (token) {
-        const tokenObject = {
-            "op": 1,
-            "d": {
-                "token": token
-            }
-        };
-        const data = JSON.stringify(tokenObject);
-        ws.send(data, function (err) {
-            if (err) throw err;
-        });
-    
-    };
-};
+const EventEmitter = require("events");
+const ws = new websocket("https://gateway.discord.exchange");
+class ExchangeClient extends EventEmitter {
+    constructor(token, botID) {
+        super();
+        this.token = token;
+        this.botID = botID;
+    }
+    authenticate () {
+        var sendData = JSON.stringify({"op": 1, "data": {"token": this.token}});
+        ws.send(sendData);
+    }
+    initiateTransaction (user, recipient, amout) { //eslint-disable-line no-unused-vars
+
+    }
+}
+async function messageHandler(data) {
+    JSON.parse(data);
+
+}
+ws.on("message", function (data) {
+    messageHandler(data);
+});
+
+
+module.exports = ExchangeClient;
+
