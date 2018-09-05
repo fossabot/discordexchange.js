@@ -1,5 +1,6 @@
 # Discordexchange.js
 [![Known Vulnerabilities](https://snyk.io/test/github/cfanoulis/discordexchange.js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/cfanoulis/discordexchange.js?targetFile=package.json)
+
 The nodeJS API client for Discord.Exchange
 
 **BUILD-TOOLS ARE REQUIRED!**
