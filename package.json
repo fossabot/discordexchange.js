@@ -2,7 +2,7 @@
   "name": "discordexchange",
   "version": "1.2.0",
   "description": "The client for the discord.exchange API",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DiscordExchange/discordexchange.js.git"
