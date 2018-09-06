@@ -1,0 +1,73 @@
+version: 2
+jobs:
+  prep:
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package.json" }}
+            - npm-deps-
+      - run:
+          name: Install packages
+          command: npm install
+      - save_cache:
+          key: npm-deps-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+
+  lint:
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package.json" }}
+            - npm-deps-
+      - run:
+          name: Linting code
+          command: npm run lint
+
+  test:
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package.json" }}
+            - npm-deps-
+      - run:
+          name: Running tests
+          command: npm run test
+  
+  semantic-release:
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package.json" }}
+            - npm-deps-
+      - run:
+          name: Running semantic-release
+          command: npm run semantic-release || true
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - prep
+      - lint:
+          requires:
+            - prep
+      - test:
+          requires:
+            - prep
+      - semantic-release:
+          requires:
+            - lint
+            - test
