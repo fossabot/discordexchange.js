@@ -10,12 +10,19 @@ jobs:
             - npm-deps-{{ checksum "package.json" }}
             - npm-deps-
       - run:
+          name: Install greenkeeper-lockfile globally
+          command: npm install -g greenkeeper-lockfile
+      - run:
+          name: Update lockfile
+          command: greenkeeper-lockfile-update
+      - run:
           name: Install packages
           command: npm install
       - save_cache:
           key: npm-deps-{{ checksum "package.json" }}
           paths:
             - node_modules
+            - package-lock.json
 
   lint:
     docker:
@@ -43,6 +50,22 @@ jobs:
           name: Running tests
           command: npm run test
   
+  greenkeeper:
+    docker:
+      - image: 'circleci/node:latest'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package.json" }}
+            - npm-deps-
+      - run:
+          name: Install greenkeeper-lockfile globally
+          command: npm install -g greenkeeper-lockfile
+      - run:
+          name: Upload lockfile
+          command: greenkeeper-lockfile-upload
+  
   semantic-release:
     docker:
       - image: 'circleci/node:latest'
@@ -67,6 +90,10 @@ workflows:
       - test:
           requires:
             - prep
+      - greenkeeper:
+          requires:
+            - lint
+            - test
       - semantic-release:
           requires:
             - lint
