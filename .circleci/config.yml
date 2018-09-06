@@ -11,7 +11,7 @@ jobs:
             - npm-deps-
       - run:
           name: Install greenkeeper-lockfile globally
-          command: npm install -g greenkeeper-lockfile
+          command: sudo npm install -g greenkeeper-lockfile
       - run:
           name: Update lockfile
           command: greenkeeper-lockfile-update
@@ -61,7 +61,7 @@ jobs:
             - npm-deps-
       - run:
           name: Install greenkeeper-lockfile globally
-          command: npm install -g greenkeeper-lockfile
+          command: sudo npm install -g greenkeeper-lockfile
       - run:
           name: Upload lockfile
           command: greenkeeper-lockfile-upload
