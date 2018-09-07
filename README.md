@@ -32,18 +32,10 @@ Now you need to authenticate your client. This is only done once per session:
 ExchangeClient.authenticate();
 ```
 
-When your credentials are accepted by our server, an `AuthSuccessful` event will fire. You can catch it by using an event handler
+The function is promisfied, so you should use it as such:
 
 ```
-ExchangeClient.on("AuthSuccessfull, function () {
-    console.log("UwU we just logged in!")
-});
+ExchangeClient.authenticate().then("Oh hello!").catch("Sad boyes we were not authenticated");
 ```
 
-If your credentials are not accepted, an `AuthUnsuccessful` event will fire.
-
-```
-ExchangeClient.on("AuthUnsuccessfull, function (err) {
-    console.log("YEET! Our credentials were denied! Pls send help. The server said: " + err)
-});
-```
+Upon authenticated, the `.then` clause will fire. If you are not authenticated, the `.catch` clause will fire.
