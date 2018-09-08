@@ -1,4 +1,4 @@
-module.exports = function (ws, token, botID, timeout = 20000) {
+module.exports = async function (ws, token, botID, timeout = 20000) {
     return new Promise( (resolve, reject) => {
             const toSend = {
                 "op": 1,
